@@ -1,3 +1,5 @@
+
+
 /* --- Variables & Reset --- */
 :root {
     --primary-green: #0a3a2a;
@@ -10,7 +12,7 @@
     --text-muted: #888;
     --text-dark: #1a1a1a;
     --border: rgba(201, 168, 76, 0.2);
-    --font-heading: 'Cormorant Garamond', serif;
+    --font-heading: 'Fraunces', serif;
     --font-body: 'DM Sans', sans-serif;
 }
 
@@ -148,6 +150,18 @@ nav.scrolled {
     backdrop-filter: blur(12px);
     box-shadow: 0 1px 0 rgba(201,168,76,0.15);
     padding: 14px 0;
+}
+
+nav:not(.scrolled) .nav-links a {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+nav:not(.scrolled) .nav-links a:hover {
+    color: var(--gold);
+}
+
+nav:not(.scrolled) .logo-text {
+    color: #fff;
 }
 
 .nav-container {
@@ -352,6 +366,125 @@ nav.scrolled {
     height: 60px;
     background: rgba(255,255,255,0.1);
     flex-shrink: 0;
+}
+
+/* --- Bio Section --- */
+.bio-section {
+    background: var(--dark-bg);
+    padding: 80px 0;
+}
+
+.bio-card {
+    max-width: 800px;
+    margin: 0 auto;
+    border-left: 3px solid var(--gold);
+    padding-left: 48px;
+}
+
+.bio-card .section-label {
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+.bio-card h2 {
+    font-family: 'Barlow Condensed', var(--font-heading), serif;
+    font-size: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+    line-height: 1;
+}
+
+.bio-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px !important;
+}
+
+.bio-card p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+    line-height: 1.85;
+    font-weight: 300;
+}
+
+/* --- Intro subhead --- */
+.intro-subhead {
+    font-size: 0.78rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    color: var(--gold) !important;
+    margin-bottom: 12px !important;
+    margin-top: -8px !important;
+}
+
+/* --- Price amount sizing fix --- */
+.price-amount {
+    font-family: var(--font-body) !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: var(--gold) !important;
+    letter-spacing: 0.02em !important;
+}
+
+/* --- Social links in apply section --- */
+.apply-social {
+    display: flex;
+    gap: 16px;
+    margin-top: 36px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover { color: var(--gold-light); }
+
+.social-link svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* --- Footer social icons --- */
+.footer-social {
+    display: flex;
+    gap: 14px;
+    margin-top: 16px;
+}
+
+.footer-social a {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.footer-social svg {
+    width: 15px;
+    height: 15px;
 }
 
 /* --- Partners Strip --- */
@@ -804,7 +937,7 @@ nav.scrolled {
 
 .careers-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 2px;
 }
 
@@ -1208,7 +1341,20 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .nav-links { display: none; }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(10,30,20,0.98);
+        padding: 24px 24px 32px;
+        gap: 20px;
+        backdrop-filter: blur(12px);
+        z-index: 999;
+    }
+    .nav-links.mobile-open { display: flex; }
     .menu-toggle { display: block; cursor: pointer; }
     .bar {
         display: block;

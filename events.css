@@ -1,0 +1,391 @@
+/* ===========================
+   EVENTS PAGE STYLES
+   =========================== */
+
+/* Override body bg for events page */
+body.events-page {
+    background: #0d0d0d;
+    color: #f0ece4;
+}
+
+/* Force nav to always show scrolled state on events page */
+body.events-page nav {
+    background: rgba(10, 30, 20, 0.97);
+    backdrop-filter: blur(12px);
+    padding: 14px 0;
+    box-shadow: 0 1px 0 rgba(201,168,76,0.15);
+}
+
+/* Logo link wrapper */
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+/* --- Events Hero --- */
+.events-hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-image: url('https://images.unsplash.com/photo-1517232115160-ff93364542dd?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center top;
+    padding-top: 100px;
+}
+
+.events-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(5,15,10,0.95) 0%, rgba(10,58,42,0.8) 50%, rgba(5,15,10,0.7) 100%);
+}
+
+.events-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+}
+
+.events-hero-content .hero-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-light);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    margin-bottom: 28px;
+    font-family: var(--font-body);
+    animation: fadeUp 0.8s ease both;
+}
+
+.events-hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 6vw, 5rem);
+    color: #fff;
+    line-height: 1.05;
+    margin-bottom: 24px;
+    font-weight: 700;
+    animation: fadeUp 0.8s 0.15s ease both;
+}
+
+.events-hero-content p {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.8;
+    max-width: 520px;
+    margin-bottom: 40px;
+    font-weight: 300;
+    animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.events-hero-content .btn-primary {
+    animation: fadeUp 0.8s 0.45s ease both;
+}
+
+/* --- What We Offer --- */
+.events-what {
+    background: #111;
+    padding: 110px 0;
+}
+
+.events-what .section-header h2,
+.events-what .section-header p {
+    color: #f0ece4;
+}
+
+.events-what .section-header p {
+    color: rgba(255,255,255,0.5);
+}
+
+.events-offer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+}
+
+.offer-card {
+    background: #1a1a1a;
+    padding: 44px 36px;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.offer-card:hover {
+    background: #222;
+    border-bottom-color: var(--gold);
+    transform: translateY(-4px);
+}
+
+.offer-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--gold);
+}
+
+.offer-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.offer-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.offer-card p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.75;
+    font-weight: 300;
+}
+
+/* --- Games Section --- */
+.events-games {
+    background: var(--primary-green);
+    padding: 110px 0;
+}
+
+.events-games .section-header h2 {
+    color: #fff;
+}
+
+.events-games .section-header p {
+    color: rgba(255,255,255,0.55);
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+}
+
+.game-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 40px 32px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.game-item:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(201,168,76,0.3);
+}
+
+.game-suit {
+    display: block;
+    font-size: 2.2rem;
+    color: var(--gold);
+    margin-bottom: 16px;
+    opacity: 0.8;
+}
+
+.game-item h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.game-item p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+/* --- How It Works --- */
+.events-how {
+    background: #0d0d0d;
+    padding: 110px 0;
+}
+
+.events-how .section-header h2 {
+    color: #fff;
+}
+
+.steps-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+    padding: 0 32px;
+}
+
+.step-number {
+    font-family: 'Barlow Condensed', var(--font-heading), serif;
+    font-size: 4.5rem;
+    font-weight: 800;
+    color: rgba(201,168,76,0.15);
+    line-height: 1;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+}
+
+.step h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.step p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.75;
+    font-weight: 300;
+}
+
+.step-arrow {
+    flex-shrink: 0;
+    color: var(--gold);
+    opacity: 0.4;
+}
+
+.step-arrow svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* --- Gallery --- */
+.events-gallery {
+    background: #111;
+    padding: 110px 0;
+}
+
+.events-gallery .section-header h2 {
+    color: #fff;
+}
+
+.events-gallery .section-header p {
+    color: rgba(255,255,255,0.45);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    margin-bottom: 40px;
+}
+
+.gallery-placeholder {
+    aspect-ratio: 1;
+    background: #1a1a1a;
+    border: 1px dashed rgba(255,255,255,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: rgba(255,255,255,0.2);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.gallery-placeholder:hover {
+    background: #222;
+    border-color: rgba(201,168,76,0.2);
+}
+
+.gallery-placeholder svg {
+    width: 36px;
+    height: 36px;
+}
+
+.gallery-cta {
+    text-align: center;
+}
+
+.btn-outline-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6);
+    padding: 13px 32px;
+    border-radius: 2px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    font-family: var(--font-body);
+}
+
+.btn-outline-dark svg {
+    width: 16px;
+    height: 16px;
+}
+
+.btn-outline-dark:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+/* --- Booking Section --- */
+.events-book {
+    background: var(--primary-green);
+    padding: 110px 0;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.book-info h2 {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    color: #fff;
+    margin-bottom: 20px;
+    line-height: 1.15;
+}
+
+.book-info > p {
+    color: rgba(255,255,255,0.65);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 44px;
+    font-weight: 300;
+}
+
+/* --- Mobile Responsive --- */
+@media (max-width: 900px) {
+    .events-offer-grid { grid-template-columns: repeat(2, 1fr); }
+    .games-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .book-grid { grid-template-columns: 1fr; gap: 48px; }
+    .steps-grid { flex-direction: column; gap: 32px; }
+    .step-arrow { transform: rotate(90deg); }
+}
+
+@media (max-width: 600px) {
+    .events-offer-grid { grid-template-columns: 1fr; }
+    .games-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .events-hero-content h1 { font-size: 2.6rem; }
+}

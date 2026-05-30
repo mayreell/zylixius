@@ -2,9 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Sticky Navigation ---
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
-    });
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+    }
 
     // --- Testimonials with Dot Controls ---
     const slides = document.querySelectorAll('.testimonial-slide');
@@ -43,28 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.querySelector('.nav-links');
 
-    if (menuToggle) {
+    if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
-            const isOpen = navLinks.style.display === 'flex';
-            navLinks.style.display = isOpen ? 'none' : 'flex';
-            if (!isOpen) {
-                Object.assign(navLinks.style, {
-                    flexDirection: 'column',
-                    position: 'absolute',
-                    top: '70px',
-                    left: '0',
-                    width: '100%',
-                    backgroundColor: 'rgba(10,30,20,0.98)',
-                    padding: '24px 24px 32px',
-                    gap: '20px',
-                    backdropFilter: 'blur(12px)',
-                });
-            }
+            navLinks.classList.toggle('mobile-open');
         });
 
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.style.display = 'none';
+                navLinks.classList.remove('mobile-open');
             });
         });
     }
@@ -79,19 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
         question.addEventListener('click', () => {
             const isOpen = question.getAttribute('aria-expanded') === 'true';
 
-            // Close all other open items
             faqItems.forEach(other => {
-                if (other !== item) {
-                    other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-                    other.querySelector('.faq-answer').classList.remove('open');
-                }
+                other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                other.querySelector('.faq-answer').classList.remove('open');
             });
 
-            // Toggle this item
-            if (isOpen) {
-                question.setAttribute('aria-expanded', 'false');
-                answer.classList.remove('open');
-            } else {
+            if (!isOpen) {
                 question.setAttribute('aria-expanded', 'true');
                 answer.classList.add('open');
             }
@@ -135,18 +116,18 @@ document.addEventListener('DOMContentLoaded', () => {
         ['firstName', 'lastName', 'email', 'phone', 'course'].forEach(id => clearError(id));
 
         const firstName = document.getElementById('firstName').value.trim();
-        const lastName = document.getElementById('lastName').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const course = document.getElementById('course').value;
+        const lastName  = document.getElementById('lastName').value.trim();
+        const email     = document.getElementById('email').value.trim();
+        const phone     = document.getElementById('phone').value.trim();
+        const course    = document.getElementById('course').value;
 
         if (!firstName) { showError('firstName', 'First name is required.'); valid = false; }
-        if (!lastName) { showError('lastName', 'Last name is required.'); valid = false; }
-        if (!email) { showError('email', 'Email address is required.'); valid = false; }
+        if (!lastName)  { showError('lastName', 'Last name is required.'); valid = false; }
+        if (!email)     { showError('email', 'Email address is required.'); valid = false; }
         else if (!validateEmail(email)) { showError('email', 'Please enter a valid email address.'); valid = false; }
-        if (!phone) { showError('phone', 'Phone number is required.'); valid = false; }
+        if (!phone)     { showError('phone', 'Phone number is required.'); valid = false; }
         else if (!validatePhone(phone)) { showError('phone', 'Please enter a valid 10-digit phone number.'); valid = false; }
-        if (!course) { showError('course', 'Please select a course.'); valid = false; }
+        if (!course)    { showError('course', 'Please select a course.'); valid = false; }
 
         return valid;
     }
@@ -173,13 +154,13 @@ document.addEventListener('DOMContentLoaded', () => {
         btnLoading.style.display = 'inline';
 
         const data = {
-            firstName: document.getElementById('firstName').value.trim(),
-            lastName: document.getElementById('lastName').value.trim(),
-            email: document.getElementById('email').value.trim(),
-            phone: document.getElementById('phone').value.trim(),
-            course: document.getElementById('course').value,
-            experience: document.getElementById('experience').value || 'not specified',
-            message: document.getElementById('message').value.trim(),
+            firstName:   document.getElementById('firstName').value.trim(),
+            lastName:    document.getElementById('lastName').value.trim(),
+            email:       document.getElementById('email').value.trim(),
+            phone:       document.getElementById('phone').value.trim(),
+            course:      document.getElementById('course').value,
+            experience:  document.getElementById('experience').value || 'not specified',
+            message:     document.getElementById('message').value.trim(),
             submittedAt: new Date().toISOString(),
         };
 
