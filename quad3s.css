@@ -1391,25 +1391,45 @@ footer {
 
 @media (max-width: 768px) {
     .nav-links { display: none; }
-    .menu-toggle { display: block; cursor: pointer; }
+    .nav-container { gap: 10px; }
+    .nav-cta .btn {
+        padding: 8px 14px;
+        font-size: 0.68rem;
+        letter-spacing: 0.05em;
+    }
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        flex-shrink: 0;
+    }
     .bar {
         display: block;
-        width: 24px;
+        width: 22px;
         height: 2px;
         background-color: rgba(255,255,255,0.8);
         margin: 5px auto;
         transition: 0.3s;
     }
+    .logo {
+        flex-shrink: 1;
+        min-width: 0;
+    }
+    .logo img {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+    }
     .logo-text {
         flex-direction: row;
         align-items: center;
         gap: 6px;
-        font-size: 1.1rem;
+        font-size: 0.95rem;
+        white-space: nowrap;
     }
     .logo-sub {
-        font-size: 0.75rem;
+        font-size: 0.68rem;
         font-weight: 700;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
     }
     .faq-question {
         font-size: 0.88rem;
@@ -1424,6 +1444,10 @@ footer {
     .stat-divider { width: 60px; height: 1px; }
     .image-frame img { height: 360px; }
     .form-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 400px) {
+    .nav-cta { display: none; }
 }
 
 @media (max-width: 480px) {
