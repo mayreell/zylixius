@@ -30,7 +30,7 @@ body.events-page nav {
     display: flex;
     align-items: center;
     position: relative;
-    background-image: url('https://images.unsplash.com/photo-1517232115160-ff93364542dd?q=80&w=2070&auto=format&fit=crop');
+    background-image: url('https://images.unsplash.com/photo-1596451190630-186aff535bf2?fm=jpg&q=80&w=2070&auto=format&fit=crop');
     background-size: cover;
     background-position: center top;
     padding-top: 100px;
@@ -168,9 +168,9 @@ body.events-page nav {
 
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 2px;
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
@@ -390,6 +390,31 @@ body.events-page nav {
     font-size: 1rem;
     line-height: 1.8;
     margin-bottom: 44px;
+    font-weight: 300;
+}
+
+.deposit-policy {
+    margin-top: 36px;
+    padding: 20px 24px;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 4px;
+}
+
+.deposit-policy strong {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+}
+
+.deposit-policy p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
     font-weight: 300;
 }
 
