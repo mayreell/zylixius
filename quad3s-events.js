@@ -9,34 +9,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Mobile Menu ---
+    // Uses an .open class (styled in quad3s.css) so desktop links never get hidden.
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.querySelector('.nav-links');
 
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
-            const isOpen = navLinks.style.display === 'flex';
-            navLinks.style.display = isOpen ? 'none' : 'flex';
-            if (isOpen) return;
-            if (!isOpen) {
-                Object.assign(navLinks.style, {
-                    flexDirection: 'column',
-                    position: 'absolute',
-                    top: '70px',
-                    left: '0',
-                    width: '100%',
-                    backgroundColor: 'rgba(10,30,20,0.98)',
-                    padding: '24px 24px 32px',
-                    gap: '20px',
-                    backdropFilter: 'blur(12px)',
-                    zIndex: '999',
-                });
-            }
+            const open = navLinks.classList.toggle('open');
+            menuToggle.classList.toggle('open', open);
         });
 
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.style.display = 'none';
+                navLinks.classList.remove('open');
+                menuToggle.classList.remove('open');
             });
+        });
+
+        // Close the menu if the screen grows back to desktop size
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('open');
+                menuToggle.classList.remove('open');
+            }
         });
     }
 

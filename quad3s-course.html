@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal | Quad 3s Dealing School</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="quad3s.css">
+    <link rel="stylesheet" href="quad3s-course.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body class="course-page">
+
+<!-- ============ PORTAL NAV ============ -->
+    <nav id="navbar" class="scrolled portal-nav">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="Quad 3s Dealing School Logo" width="60" height="60">
+                    <span class="logo-text">Quad 3s<span class="logo-sub">Student Portal</span></span>
+                </a>
+            </div>
+            <ul class="nav-links portal-links" id="portalLinks">
+                <li><a href="#dashboard" data-nav="dashboard">Dashboard</a></li>
+                <li><a href="#lesson" data-nav="lesson">My Course</a></li>
+                <li><a href="index.html">Main Site</a></li>
+            </ul>
+            <div class="user-menu hidden" id="userMenu">
+                <button class="user-chip" id="userChip" aria-haspopup="true" aria-expanded="false">
+                    <span class="avatar" id="userInitials">SM</span>
+                    <span class="user-name" id="userName">Student</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="#dashboard">Dashboard</a>
+                    <a href="#lesson">My Course</a>
+                    <a href="index.html">Main Site</a>
+                    <button id="logoutBtn">Log Out</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<main>
+
+<!-- ============ SCREEN: LOGIN / SIGN UP ============ -->
+    <section class="screen screen-auth" id="screen-auth" hidden>
+        <div class="auth-bg"></div>
+        <div class="container auth-grid">
+            <div class="auth-pitch">
+                <div class="hero-badge">Online Dealer Training</div>
+                <h1>Learn it online.<br>Prove it at <span class="text-gold">the table.</span></h1>
+                <p>Study the lessons at your own pace, then come in once a week to show Rey your skills on the felt. When he says you're ready, you'll deal a practice audition. Pass it, and he'll help you land real casino auditions.</p>
+                <ol class="auth-points">
+                    <li><span>1</span>Learn the lessons online, on your schedule</li>
+                    <li><span>2</span>Come in weekly to show Rey your skills</li>
+                    <li><span>3</span>Deal a practice audition when you're ready</li>
+                    <li><span>4</span>Get connected to real casino auditions</li>
+                </ol>
+            </div>
+
+            <div class="auth-card">
+                <div class="auth-tabs" role="tablist">
+                    <button class="auth-tab active" data-tab="login" role="tab">Log In</button>
+                    <button class="auth-tab" data-tab="signup" role="tab">Sign Up</button>
+                </div>
+
+                <form class="auth-form" id="loginForm" novalidate>
+                    <h2>Welcome back</h2>
+                    <p class="auth-sub">Log in to pick up where you left off.</p>
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" placeholder="you@email.com" autocomplete="email">
+                        <span class="field-error" id="loginEmailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Your password" autocomplete="current-password">
+                        <span class="field-error" id="loginPasswordError"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Log In</button>
+                    <p class="auth-switch">New student? <a href="#signup">Create an account</a></p>
+                </form>
+
+                <form class="auth-form hidden" id="signupForm" novalidate>
+                    <h2>Create your account</h2>
+                    <p class="auth-sub">Free to sign up. Unlock courses when you're ready.</p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="suFirst">First Name</label>
+                            <input type="text" id="suFirst" placeholder="John" autocomplete="given-name">
+                            <span class="field-error" id="suFirstError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="suLast">Last Name</label>
+                            <input type="text" id="suLast" placeholder="Smith" autocomplete="family-name">
+                            <span class="field-error" id="suLastError"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="suEmail">Email</label>
+                        <input type="email" id="suEmail" placeholder="you@email.com" autocomplete="email">
+                        <span class="field-error" id="suEmailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="suPassword">Password</label>
+                        <input type="password" id="suPassword" placeholder="At least 8 characters" autocomplete="new-password">
+                        <span class="field-error" id="suPasswordError"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                    <p class="auth-switch">Already enrolled? <a href="#login">Log in</a></p>
+                </form>
+
+                <p class="demo-note">Prototype: any email and password will work. Nothing is sent anywhere.</p>
+            </div>
+        </div>
+    </section>
+
+<!-- ============ SCREEN: DASHBOARD ============ -->
+    <section class="screen screen-dashboard" id="screen-dashboard" hidden>
+        <div class="container">
+            <header class="dash-header reveal">
+                <div>
+                    <div class="section-label">Student Dashboard</div>
+                    <h1><span id="dashHello">Welcome back, </span><span id="dashName">Student</span></h1>
+                    <p id="dashSub">Pick up where you left off.</p>
+                </div>
+            </header>
+
+            <div class="dash-grid">
+                <div class="dash-main">
+                    <!-- Continue card (filled by JS) -->
+                    <div class="continue-card reveal" id="continueCard"></div>
+
+                    <!-- Stats -->
+                    <div class="dash-stats reveal">
+                        <div class="dash-stat">
+                            <span class="dash-stat-num" id="statLessons">0/4</span>
+                            <span class="dash-stat-label">Lessons Done</span>
+                        </div>
+                        <div class="dash-stat">
+                            <span class="dash-stat-num" id="statQuiz">Locked</span>
+                            <span class="dash-stat-label">Module 1 Quiz</span>
+                        </div>
+                        <div class="dash-stat">
+                            <span class="dash-stat-num" id="statModules">0/4</span>
+                            <span class="dash-stat-label">Modules Open</span>
+                        </div>
+                    </div>
+
+                    <h2 class="dash-h2">My Courses</h2>
+                    <div class="dash-courses" id="dashCourses"></div>
+                </div>
+
+                <aside class="dash-side">
+                    <div class="side-card reveal">
+                        <div class="side-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <h3>Hands-On Practice</h3>
+                        <p>Lessons teach the why. Table time teaches your hands. Plan to come in once a week so Rey can check your skills on the felt.</p>
+                        <ul class="side-list">
+                            <li><strong>Hours</strong><span>Mon - Sun, 11am - 4pm</span></li>
+                            <li><strong>Location</strong><span>3333 Vincent Rd, Suite 260<br>Pleasant Hill, CA</span></li>
+                            <li><strong>Phone</strong><span>(925) 464-9831</span></li>
+                        </ul>
+                    </div>
+                    <div class="side-card side-card-dark reveal">
+                        <h3>Your Path to the Floor</h3>
+                        <ol class="path-steps">
+                            <li><span>1</span>Finish the online lessons</li>
+                            <li><span>2</span>Weekly skill check-ins with Rey</li>
+                            <li><span>3</span>Practice audition when he says you're ready</li>
+                            <li><span>4</span>Real casino auditions</li>
+                        </ol>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+<!-- ============ SCREEN: CHECKOUT / PAYWALL ============ -->
+    <section class="screen screen-checkout" id="screen-checkout" hidden>
+        <div class="container">
+            <a href="#dashboard" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back to dashboard
+            </a>
+
+            <div class="checkout-grid" id="checkoutBody">
+                <div class="order-card reveal">
+                    <div class="section-label">Unlock Course</div>
+                    <span class="course-suit" id="coSuit">♠</span>
+                    <h1 id="coTitle">Texas Hold'em</h1>
+                    <p id="coDesc"></p>
+                    <ul class="course-includes" id="coIncludes"></ul>
+
+                    <div class="price-line">
+                        <span>One-time payment</span>
+                        <strong id="coFull">$100</strong>
+                    </div>
+                    <p class="plan-note">Placeholder pricing for the prototype. Final pricing comes from Rey.</p>
+                </div>
+
+                <div class="pay-card reveal">
+                    <form id="payForm" novalidate>
+                        <div class="pay-head">
+                            <h2>Payment Details</h2>
+                            <span class="lock-pill">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                Secure checkout
+                            </span>
+                        </div>
+                        <div class="demo-warning">
+                            <strong>Demo only.</strong> No payment is processed and nothing you type leaves this page. Test numbers are filled in for you.
+                        </div>
+                        <div class="form-group">
+                            <label for="payName">Name on Card</label>
+                            <input type="text" id="payName" autocomplete="off">
+                            <span class="field-error" id="payNameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="payCard">Card Number</label>
+                            <input type="text" id="payCard" inputmode="numeric" value="4242 4242 4242 4242" autocomplete="off">
+                            <span class="field-error" id="payCardError"></span>
+                        </div>
+                        <div class="form-row form-row-3">
+                            <div class="form-group">
+                                <label for="payExp">Expiry</label>
+                                <input type="text" id="payExp" value="12 / 30" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="payCvc">CVC</label>
+                                <input type="text" id="payCvc" value="123" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="payZip">ZIP</label>
+                                <input type="text" id="payZip" value="94523" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="pay-total">
+                            <span>Due today</span>
+                            <strong id="coDue">$100</strong>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full" id="payBtn">
+                            <span class="btn-text">Complete Purchase</span>
+                            <span class="btn-loading">Processing...</span>
+                        </button>
+                        <p class="form-disclaimer">In the real build, this form is replaced by Stripe Checkout so card details never touch the school's site.</p>
+                    </form>
+
+                    <div class="pay-success hidden" id="paySuccess">
+                        <div class="success-icon">✓</div>
+                        <h2>You're In!</h2>
+                        <p id="paySuccessMsg">Texas Hold'em is unlocked. Let's deal your first hand.</p>
+                        <a href="#lesson" class="btn btn-primary" id="paySuccessBtn">Start Module 1</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- ============ SCREEN: COMING SOON ============ -->
+    <section class="screen screen-soon" id="screen-soon" hidden>
+        <div class="container soon-wrap reveal">
+            <span class="course-suit">♥</span>
+            <h1 id="soonTitle">Casino Table Games</h1>
+            <p>This course is unlocked on your account. Lessons are being filmed now, so check back soon. In the meantime, table time at the school is open every day.</p>
+            <a href="#dashboard" class="btn btn-outline">Back to Dashboard</a>
+        </div>
+    </section>
+
+<!-- ============ SCREEN: LESSON ============ -->
+    <section class="screen screen-lesson" id="screen-lesson" hidden>
+        <div class="container lesson-layout">
+
+            <!-- Course outline sidebar -->
+            <aside class="outline" id="outline">
+                <div class="outline-head" id="outlineHead">
+                    <span class="outline-course">♠ Texas Hold'em
+                        <svg class="outline-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                    </span>
+                    <div class="outline-progress">
+                        <div class="progress-track"><div class="progress-fill" id="outlineFill"></div></div>
+                        <span id="outlinePct">0%</span>
+                    </div>
+                </div>
+
+                <div class="outline-module open">
+                    <div class="outline-module-title">
+                        <span class="mod-num">01</span>
+                        <span>Hold'em Fundamentals</span>
+                    </div>
+                    <ol class="outline-items">
+                        <li><a href="#l1" data-outline="1"><span class="oi-check"></span>The Table and the Button</a></li>
+                        <li><a href="#l2" data-outline="2"><span class="oi-check"></span>Pitching the Hole Cards</a></li>
+                        <li><a href="#l3" data-outline="3"><span class="oi-check"></span>Burn and Turn</a></li>
+                        <li><a href="#l4" data-outline="4"><span class="oi-check"></span>Who Acts First</a></li>
+                        <li><a href="#quiz" data-outline="quiz" class="oi-quiz"><span class="oi-check"></span>Module Quiz</a></li>
+                    </ol>
+                </div>
+
+                <div class="outline-module locked" id="mod2Outline">
+                    <div class="outline-module-title">
+                        <span class="mod-num">02</span>
+                        <span>Pot Management &amp; Chip Handling</span>
+                        <svg class="lock-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <p class="outline-lock-msg" id="mod2Msg">Pass the Module 1 quiz to unlock</p>
+                </div>
+                <div class="outline-module locked">
+                    <div class="outline-module-title">
+                        <span class="mod-num">03</span>
+                        <span>Showdown &amp; Reading Hands</span>
+                        <svg class="lock-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                </div>
+                <div class="outline-module locked">
+                    <div class="outline-module-title">
+                        <span class="mod-num">04</span>
+                        <span>Audition Prep</span>
+                        <svg class="lock-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Lesson content -->
+            <div class="lesson-main">
+                <div class="lesson-crumbs">
+                    <a href="#dashboard">Dashboard</a> <span>/</span> Texas Hold'em <span>/</span> Module 1
+                </div>
+                <header class="lesson-header">
+                    <div class="section-label">Module 01</div>
+                    <h1>Hold'em Fundamentals for Dealers</h1>
+                    <p class="lesson-meta">4 lessons <span>·</span> 1 quiz <span>·</span> About 35 minutes</p>
+                </header>
+
+                <!-- Video placeholder -->
+                <div class="video-shell reveal" id="videoShell">
+                    <div class="video-felt"></div>
+                    <button class="video-play" id="videoPlay" aria-label="Play module video">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </button>
+                    <div class="video-caption">
+                        <span class="video-tag">Video Placeholder</span>
+                        <strong>Module 1 Overview with Rey</strong>
+                        <span>Lesson video goes here once it's filmed</span>
+                    </div>
+                    <div class="video-bar">
+                        <div class="video-bar-fill"></div>
+                        <span>0:00 / 12:40</span>
+                    </div>
+                </div>
+
+                <!-- ===== LESSON 1 ===== -->
+                <article class="lesson-block reveal" id="l1" data-lesson="1">
+                    <div class="lesson-kicker"><span>Lesson 1</span><span class="done-pill">Complete</span></div>
+                    <h2>The Table and the Button</h2>
+                    <p>Before you pitch a single card, you need to read the table. In Texas Hold'em the house dealer never plays a hand. Instead, a round disk called the <strong>dealer button</strong> marks which player acts as the dealer for that hand. Who posts the blinds, who gets the first card, and who acts first are all measured from the button.</p>
+                    <p>The two players to the left of the button post forced bets called <strong>blinds</strong>. The <strong>small blind</strong> sits directly left of the button. The <strong>big blind</strong> sits left of the small blind. The player left of the big blind is <strong>under the gun</strong>, or UTG.</p>
+
+                    <div class="demo">
+                        <div class="demo-head">
+                            <span class="demo-label">Interactive Table</span>
+                            <span class="demo-hint">Move the button and watch the blinds follow it.</span>
+                        </div>
+                        <div class="felt-wrap" data-demo="positions"></div>
+                        <div class="demo-controls">
+                            <button class="btn btn-primary btn-sm" id="moveBtn">Move Button</button>
+                            <span class="demo-status" id="posStatus">Hand 1</span>
+                        </div>
+                    </div>
+
+                    <p>After every hand, the button moves one seat clockwise. That way every player takes a turn in every position, and nobody pays the blinds twice in a row.</p>
+
+                    <ul class="key-points">
+                        <li>The button marks the dealer position for the hand.</li>
+                        <li>Small blind is one seat left of the button. Big blind is two seats left.</li>
+                        <li>The button moves one seat clockwise after every hand.</li>
+                    </ul>
+
+                    <div class="check" data-check="1" data-correct="b">
+                        <span class="check-label">Quick Check</span>
+                        <p class="check-q">Where does the big blind sit?</p>
+                        <div class="check-opts">
+                            <button data-opt="a">Directly left of the button</button>
+                            <button data-opt="b">Two seats left of the button</button>
+                            <button data-opt="c">Directly right of the button</button>
+                        </div>
+                        <p class="check-feedback"></p>
+                    </div>
+                </article>
+
+                <!-- ===== LESSON 2 ===== -->
+                <article class="lesson-block reveal" id="l2" data-lesson="2">
+                    <div class="lesson-kicker"><span>Lesson 2</span><span class="done-pill">Complete</span></div>
+                    <h2>Pitching the Hole Cards</h2>
+                    <p>Each player gets two private cards called <strong>hole cards</strong>. You deal them one at a time, clockwise, starting with the small blind. Go around the table once, then go around again. The button always gets the last card.</p>
+
+                    <div class="demo">
+                        <div class="demo-head">
+                            <span class="demo-label">Watch the Deal</span>
+                            <span class="demo-hint">Notice where the first card lands.</span>
+                        </div>
+                        <div class="felt-wrap" data-demo="deal"></div>
+                        <div class="demo-controls">
+                            <button class="btn btn-primary btn-sm" id="dealBtn">Deal Hole Cards</button>
+                            <span class="demo-status" id="dealStatus">Ready to deal</span>
+                        </div>
+                    </div>
+
+                    <p>A clean pitch keeps the card low to the felt and lands it right in front of the player. Cards that flip over or fly off the table slow the game down and can expose information. A steady grip on the deck and a smooth wrist motion are the first things Rey drills on day one.</p>
+
+                    <ul class="key-points">
+                        <li>Two cards each, one at a time, clockwise.</li>
+                        <li>The first card goes to the small blind. The button gets the last card.</li>
+                        <li>Count check: players × 2. Six players means 12 cards out.</li>
+                    </ul>
+
+                    <div class="check" data-check="2" data-correct="b">
+                        <span class="check-label">Quick Check</span>
+                        <p class="check-q">Which player gets the last hole card?</p>
+                        <div class="check-opts">
+                            <button data-opt="a">The big blind</button>
+                            <button data-opt="b">The button</button>
+                            <button data-opt="c">Under the gun</button>
+                        </div>
+                        <p class="check-feedback"></p>
+                    </div>
+                </article>
+
+                <!-- ===== LESSON 3 ===== -->
+                <article class="lesson-block reveal" id="l3" data-lesson="3">
+                    <div class="lesson-kicker"><span>Lesson 3</span><span class="done-pill">Complete</span></div>
+                    <h2>Burn and Turn: Dealing the Board</h2>
+                    <p>The <strong>board</strong> is the set of community cards everyone shares. Before each round of board cards, you <strong>burn</strong> one card face down. Burning protects the game in case the top card was flashed or marked.</p>
+                    <p>The <strong>flop</strong> is three cards turned face up together. The <strong>turn</strong> is one card. The <strong>river</strong> is one card. A hand that goes all the way uses three burns and five board cards.</p>
+
+                    <div class="demo">
+                        <div class="demo-head">
+                            <span class="demo-label">Deal the Board</span>
+                            <div class="street-pills" id="streetPills">
+                                <span class="active">Preflop</span><span>Flop</span><span>Turn</span><span>River</span>
+                            </div>
+                        </div>
+                        <div class="felt-wrap" data-demo="board"></div>
+                        <div class="demo-controls">
+                            <button class="btn btn-primary btn-sm" id="streetBtn">Burn &amp; Deal Flop</button>
+                            <span class="demo-status" id="boardStatus">Burned: 0</span>
+                        </div>
+                    </div>
+
+                    <ul class="key-points">
+                        <li>Burn one card before the flop, the turn, and the river.</li>
+                        <li>Flop is 3 cards. Turn is 1. River is 1.</li>
+                        <li>Keep burn cards together, face down, near the deck.</li>
+                    </ul>
+
+                    <div class="check" data-check="3" data-correct="b">
+                        <span class="check-label">Quick Check</span>
+                        <p class="check-q">What do you do right before dealing the turn?</p>
+                        <div class="check-opts">
+                            <button data-opt="a">Turn the top card right away</button>
+                            <button data-opt="b">Burn one card face down</button>
+                            <button data-opt="c">Shuffle the remaining deck</button>
+                        </div>
+                        <p class="check-feedback"></p>
+                    </div>
+                </article>
+
+                <!-- ===== LESSON 4 ===== -->
+                <article class="lesson-block reveal" id="l4" data-lesson="4">
+                    <div class="lesson-kicker"><span>Lesson 4</span><span class="done-pill">Complete</span></div>
+                    <h2>Who Acts First</h2>
+                    <p>As the dealer, you run the action. You need to know whose turn it is every single time. <strong>Before the flop</strong>, action starts with the player under the gun and moves clockwise. The big blind acts last, because they already have a bet in.</p>
+                    <p><strong>On the flop, turn, and river</strong>, action starts with the first active player left of the button. The button acts last on every street after the flop, which is why players call it the best seat at the table.</p>
+
+                    <div class="demo">
+                        <div class="demo-head">
+                            <span class="demo-label">Follow the Action</span>
+                            <div class="seg" id="actionSeg">
+                                <button class="active" data-mode="pre">Preflop</button>
+                                <button data-mode="post">After the Flop</button>
+                            </div>
+                        </div>
+                        <div class="felt-wrap" data-demo="action"></div>
+                        <div class="demo-controls">
+                            <button class="btn btn-primary btn-sm" id="actionBtn">Play Action Order</button>
+                            <span class="demo-status" id="actionStatus">Preflop order</span>
+                        </div>
+                    </div>
+
+                    <ul class="key-points">
+                        <li>Preflop: UTG acts first, big blind acts last.</li>
+                        <li>Flop, turn, river: first active player left of the button acts first.</li>
+                        <li>The button acts last on every street after the flop.</li>
+                    </ul>
+
+                    <div class="check" data-check="4" data-correct="c">
+                        <span class="check-label">Quick Check</span>
+                        <p class="check-q">Before the flop, who acts last?</p>
+                        <div class="check-opts">
+                            <button data-opt="a">The button</button>
+                            <button data-opt="b">The small blind</button>
+                            <button data-opt="c">The big blind</button>
+                        </div>
+                        <p class="check-feedback"></p>
+                    </div>
+                </article>
+
+                <!-- ===== QUIZ ===== -->
+                <section class="quiz-block reveal" id="quiz">
+                    <div class="quiz-lock" id="quizLock">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <h3>Quiz Locked</h3>
+                        <p id="quizLockMsg">Answer the Quick Check in all 4 lessons to unlock the module quiz.</p>
+                    </div>
+
+                    <div class="quiz-inner">
+                        <div class="section-label light">Module 1 Quiz</div>
+                        <h2>Prove It to Move On</h2>
+                        <p class="quiz-intro">Score 4 out of 5 to unlock Module 2. You can retake it as many times as you need.</p>
+                        <form id="quizForm"></form>
+                        <div class="quiz-result hidden" id="quizResult"></div>
+                    </div>
+                </section>
+
+                <!-- Next module card -->
+                <div class="next-module reveal" id="nextModule">
+                    <div>
+                        <span class="next-label">Up Next · Module 02</span>
+                        <h3>Pot Management &amp; Chip Handling</h3>
+                        <p id="nextMsg">Locked until you pass the Module 1 quiz.</p>
+                    </div>
+                    <span class="next-lock" id="nextLock">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+    <footer class="portal-footer">
+        <div class="container portal-footer-inner">
+            <p>&copy; 2026 Quad 3s Dealing School. Student Portal.</p>
+            <p><a href="index.html">Main Site</a> · <a href="tel:9254649831">(925) 464-9831</a></p>
+        </div>
+    </footer>
+
+<!-- Prototype pill + toast -->
+    <div class="proto-pill">
+        <span>Prototype</span>
+        <button id="resetDemo">Reset demo</button>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="quad3s-course.js"></script>
+</body>
+</html>

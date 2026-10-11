@@ -1454,3 +1454,136 @@ footer {
     .hero-content h1 { font-size: 2rem; }
     .section-header h2 { font-size: 2rem; }
 }
+
+
+/* ===========================
+   ACCOUNT MENU (shared: Home, Events, Student Portal)
+   =========================== */
+.nav-account { display: flex; align-items: center; }
+
+.nav-login {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+.nav-login svg { width: 16px; height: 16px; color: var(--gold); }
+.nav-login:hover { color: var(--gold); }
+
+.nav-links .nav-login-item { display: none; }
+
+.user-menu { position: relative; }
+
+.user-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(201,168,76,0.25);
+    color: #fff;
+    padding: 5px 12px 5px 5px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+.user-chip:hover { background: rgba(255,255,255,0.1); border-color: var(--gold); }
+.user-chip svg { width: 14px; height: 14px; opacity: 0.6; }
+
+.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #0d0d0d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+}
+
+.user-dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 10px);
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    min-width: 180px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.user-menu.open .user-dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+.user-dropdown a,
+.user-dropdown button {
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    color: var(--text-dark);
+    text-align: left;
+    background: none;
+    border: none;
+    font-family: var(--font-body);
+    cursor: pointer;
+}
+.user-dropdown a:hover,
+.user-dropdown button:hover { background: #f5f2ed; }
+.user-dropdown button { color: #c0392b; border-top: 1px solid #e8e3d8; margin-top: 4px; padding-top: 12px; }
+.user-dropdown-head {
+    padding: 8px 12px 10px;
+    border-bottom: 1px solid #e8e3d8;
+    margin-bottom: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.user-dropdown-head strong { font-size: 0.9rem; color: var(--text-dark); }
+.user-dropdown-head span { font-size: 0.75rem; color: #999; word-break: break-all; }
+.user-menu.hidden { display: none; }
+
+@media (max-width: 768px) {
+    .nav-account .nav-login { display: none; }
+    .nav-links .nav-login-item { display: block; }
+    .nav-links .nav-login-item a { color: var(--gold); }
+    .user-name { display: none; }
+    .user-chip { padding: 4px 8px 4px 4px; gap: 6px; }
+}
+
+
+/* --- Mobile menu (open state toggled by .open) --- */
+@media (max-width: 768px) {
+    .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: rgba(10,30,20,0.98);
+        padding: 24px 24px 32px;
+        gap: 20px;
+        backdrop-filter: blur(12px);
+        z-index: 999;
+        animation: fadeEffect 0.25s ease;
+    }
+    .menu-toggle.open .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle.open .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.open .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+}

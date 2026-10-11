@@ -40,33 +40,56 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Mobile Menu ---
+    // Uses an .open class (styled in quad3s.css) so desktop links never get hidden.
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.querySelector('.nav-links');
 
-    if (menuToggle) {
+    if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
-            const isOpen = navLinks.style.display === 'flex';
-            navLinks.style.display = isOpen ? 'none' : 'flex';
-            if (isOpen) return;
-            if (!isOpen) {
-                Object.assign(navLinks.style, {
-                    flexDirection: 'column',
-                    position: 'absolute',
-                    top: '70px',
-                    left: '0',
-                    width: '100%',
-                    backgroundColor: 'rgba(10,30,20,0.98)',
-                    padding: '24px 24px 32px',
-                    gap: '20px',
-                    backdropFilter: 'blur(12px)',
-                });
-            }
+            const open = navLinks.classList.toggle('open');
+            menuToggle.classList.toggle('open', open);
         });
 
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.style.display = 'none';
+                navLinks.classList.remove('open');
+                menuToggle.classList.remove('open');
             });
+        });
+
+        // Close the menu if the screen grows back to desktop size
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('open');
+                menuToggle.classList.remove('open');
+            }
+        });
+    }
+
+    // --- Highlight the nav link for the section on screen ---
+    const spyLinks = [...document.querySelectorAll('.nav-links a[href^="#"]')];
+    const spySections = spyLinks
+        .map(a => a.getAttribute('href'))
+        .filter(h => h.length > 1)
+        .map(h => document.querySelector(h))
+        .filter(Boolean);
+
+    function setActive(hash) {
+        spyLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === hash));
+    }
+
+    if (spySections.length) {
+        const spy = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) setActive('#' + e.target.id);
+            });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        spySections.forEach(s => spy.observe(s));
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY < 200) setActive('#');
+            // Footer is short, so mark Contact once you hit the bottom
+            else if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) setActive('#contact');
         });
     }
 
